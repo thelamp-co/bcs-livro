@@ -1,0 +1,82 @@
+BCS — PUBLICAR NA VERCEL
+Pacote da página aprovada por Danielle Bayer — 09/10/2026
+
+O pacote inclui a mesma página publicada: design, conteúdo, imagem atualizada,
+fontes locais, prévias de leitura apenas dos capítulos 1, 2 e 3, e os três
+botões de compra com https://pay.kiwify.com.br/lu8zkjm.
+O livro completo não faz parte deste pacote público de hospedagem.
+
+CONTEÚDO
+- dist/: página e todos os seus arquivos estáticos.
+- vercel.json: configuração de publicação, sem instalação nem compilação.
+- LEIA-ME.txt: estas instruções.
+
+1. EXTRAIR E ENVIAR AO GITHUB
+1) Descompacte BCS_Vercel.zip no seu computador.
+2) No GitHub, crie um novo repositório chamado bcs-livro.
+   Pode ser privado; a Vercel precisará de acesso a esse repositório.
+3) Na página do repositório, use o link “uploading an existing file” ou
+   Add file → Upload files.
+4) Envie a pasta dist, o arquivo vercel.json e este LEIA-ME.txt.
+   Envie o conteúdo extraído; não envie apenas o ZIP.
+   vercel.json e a pasta dist devem aparecer na raiz do repositório,
+   e não dentro de uma pasta adicional chamada BCS_Vercel.
+5) Clique em Commit changes para salvar o envio na branch main.
+
+2. PUBLICAR NA VERCEL
+1) Entre em https://vercel.com/new e escolha a conta/equipe desejada.
+2) Em Import Git Repository, conecte sua conta GitHub, se necessário,
+   e autorize o repositório bcs-livro.
+3) Clique em Import ao lado desse repositório.
+4) Dê ao projeto o nome bcs-livro. Crie um projeto separado do site The Lamp.
+5) Confira a configuração:
+   Framework Preset: Other.
+   Root Directory: raiz do repositório (padrão; não selecione dist aqui).
+   Build Command: vazio, com Override ativado se necessário.
+   Install Command: vazio, com Override ativado se necessário.
+   Output Directory: dist.
+   Environment Variables: nenhuma necessária para esta página.
+   O vercel.json já define os comandos vazios e Output Directory = dist.
+6) Clique em Deploy e espere o status Ready.
+7) Abra o endereço .vercel.app gerado pela Vercel.
+8) Confira as imagens e fontes no celular e no computador; teste as prévias
+   dos capítulos 1, 2 e 3 e o destino dos botões de compra da Kiwify.
+
+3. CONECTAR bcs.thelampco.cc
+Faça esta etapa depois de a página estar pronta e testada no endereço da Vercel.
+1) Abra o projeto bcs-livro na Vercel → Settings → Domains.
+2) Adicione bcs.thelampco.cc ao ambiente Production.
+3) Copie o destino CNAME mostrado para esse domínio pela Vercel.
+   Use o valor exato exibido; não copie um destino genérico de outro tutorial.
+4) Na GoDaddy, abra thelampco.cc → DNS.
+5) Edite o registro CNAME cujo Nome é bcs.
+   Substitua custom-domains.chatgpt.site. pelo destino exibido na Vercel.
+   Não crie um segundo CNAME com o mesmo Nome.
+   Mantenha o TTL padrão.
+6) Se a Vercel pedir um TXT de verificação, adicione exatamente o Nome e
+   Valor indicados no painel da Vercel.
+7) Salve e aguarde a atualização DNS. Volte à Vercel e confira o status
+   Valid Configuration e a emissão do certificado HTTPS.
+8) Acesse https://bcs.thelampco.cc e confira a página e os botões de compra.
+
+Preserve os registros do domínio principal, de www, do e-mail e os servidores
+DNS existentes da GoDaddy. Para esta mudança, edite somente o CNAME bcs e
+adicione eventual verificação solicitada pela Vercel. Os TXT de verificação
+anteriores do Sites não fazem o direcionamento; podem permanecer inicialmente.
+
+A edição atual continuará disponível no endereço original do ChatGPT Sites.
+Depois da migração, atualizações feitas aqui no Sites não são sincronizadas
+automaticamente com a cópia na Vercel. Para atualizar a Vercel, altere os arquivos
+no repositório conectado e faça um commit na branch de produção (normalmente main).
+
+Se aparecer 404: confira Output Directory = dist e dist/index.html no repositório.
+Se faltarem imagens/fontes: confira dist/assets e mantenha os nomes e subpastas.
+Se aparecer Invalid Configuration: confira o CNAME bcs e o destino específico
+exibido na Vercel; a atualização DNS pode ainda estar em andamento.
+
+FONTES OFICIAIS
+https://vercel.com/docs/builds/configure-a-build
+https://vercel.com/docs/git/vercel-for-github
+https://vercel.com/docs/domains/working-with-domains/add-a-domain
+https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository
+https://www.godaddy.com/pt-br/help/editar-um-registro-cname-19237
